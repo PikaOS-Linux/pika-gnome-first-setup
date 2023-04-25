@@ -4,10 +4,11 @@ add-apt-repository https://ppa.pika-os.com
 add-apt-repository ppa:pikaos/pika
 add-apt-repository ppa:kubuntu-ppa/backports
 # Clone Upstream
-mkdir -p ./pika-gnome-layouts
-cp -rvf ./debian ./pika-gnome-layouts/
-cp -rvf ./usr ./pika-gnome-layouts/
-cd ./pika-gnome-layouts
+mkdir -p ./pika-gnome-first-setup
+cp -rvf ./debian ./pika-gnome-first-setup/
+cp -rvf ./usr ./pika-gnome-first-setup/
+cp -rvf ./etc ./pika-gnome-first-setup/
+cd ./pika-gnome-first-setup
 
 # Get build deps
 apt-get build-dep ./ -y
