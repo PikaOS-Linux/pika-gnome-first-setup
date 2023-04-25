@@ -19,7 +19,7 @@ class Application:
         application_id="org.pika.layouts"
         
         self.builder = Gtk.Builder()
-        self.builder.add_from_file("/usr/lib/pika/gnome-layouts/main.ui")
+        self.builder.add_from_file("/usr/lib/pika/gnome-first-setup/main.ui")
         self.builder.connect_signals(self)
         win = self.builder.get_object("main_window")
     
@@ -44,6 +44,31 @@ class Application:
         
         settings = Gio.Settings.new("org.pika.layouts")
         
+        ### app state refresh ###
+        global check_dark_mode_switch_refresh
+        check_dark_mode_switch_refresh = True
+        
+        def check_dark_mode_switch_kill(self):
+            global check_dark_mode_switch_refresh
+            check_dark_mode_switch_refresh = False    
+            
+        win.connect("destroy", check_dark_mode_switch_kill)
+        
+        def check_dark_mode_switch_kill_without():
+            global check_dark_mode_switch_refresh
+            check_dark_mode_switch_refresh = False    
+        
+        def check_dark_mode_switch():
+            dark_switch = self.builder.get_object("dark_switch")
+            while check_dark_mode_switch_refresh == True:
+                        if dark_switch.get_active() == True:
+                                    subprocess.Popen(["/usr/lib/pika/gnome-first-setup/darkmode.sh"])
+                                    check_dark_mode_switch_kill_without()
+        	
+            
+        t2 = threading.Thread(target=check_dark_mode_switch)
+        t2.start()
+       
         
         ### Themes
     def on_pika_theme_button_pressed(self, widget):
@@ -54,7 +79,6 @@ class Application:
         accent_box = self.builder.get_object("accent_box")
         subprocess.run(["/usr/lib/pika/gnome-layouts/theme.sh gnome"], shell=True)
         accent_box.hide()
-        
         
         if settings.get_int("layout-num") == 1:
             win10toggle = self.builder.get_object("win10_button")
@@ -77,6 +101,23 @@ class Application:
         if settings.get_int("layout-num") == 6:
             macostoggle = self.builder.get_object("unity_button")
             macostoggle.set_active(True)
+            
+            
+
+            
+    ### CODEC ###
+    def on_codec_install_button_pressed(self, widget):
+        subprocess.Popen(["/usr/lib/pika/welcome/codec.sh"])
+    ### NVIDIA ###
+    def on_driver_manager_button_pressed(self, widget):
+        subprocess.Popen(["/usr/lib/pika/welcome/nvidia.sh"])
+    ### Distro Sync ###
+    def on_update_system_button_pressed(self, widget):
+        subprocess.Popen(["mintupdate"])
+    def on_network_connect_button_pressed(self, widget):
+        subprocess.Popen(["/usr/lib/pika/gnome-first-setup/network-settings.sh"])
+    def on_pika_hub_button_pressed(self, widget):
+        subprocess.Popen(["pika-welcome"])
 
     ### Layouts ###
     
@@ -145,6 +186,21 @@ class Application:
         subprocess.run(["/usr/lib/pika/gnome-layouts/dconf-accent.sh Grey"], shell=True)
         subprocess.run(["pkexec /usr/lib/pika/gnome-layouts/papirus-folders -u -C grey"], shell=True)
         subprocess.run(["echo 'theme change done!'"], shell=True)
+    
+    def on_next_button_pressed(self, widget):
+        main_stack = self.builder.get_object("main_stack")
+        main_stack_pages = main_stack.get_children()
+        main_stack_cur_page = main_stack.get_visible_child()
+        i = main_stack_pages.index(main_stack_cur_page)
+        if i == len(main_stack_pages) - 1: return
+        main_stack.set_visible_child(main_stack_pages[i+1])
+        if main_stack.get_visible_child_name() == 'done':
+            buttom_box = self.builder.get_object("buttom_box")
+            buttom_box.hide()
+    def on_next_button1_pressed(self, widget):
+        global check_dark_mode_switch_refresh
+        check_dark_mode_switch_refresh = False
+        Gtk.main_quit()
     
 Application()
 Gtk.main()
