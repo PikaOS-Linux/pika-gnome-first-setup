@@ -1,40 +1,4 @@
-pika-gnome-layouts (3.0-99pika3) kinetic; urgency=low
-
-  * Refine UI
-
- -- Ward Nakchbandi <hotrod.master@hotmail.com>  Sat, 01 Oct 2022 14:50:00 +0200
-
-pika-gnome-layouts (3.0-99pika1) kinetic; urgency=low
-
-  * Update UI
-
- -- Ward Nakchbandi <hotrod.master@hotmail.com>  Sat, 01 Oct 2022 14:50:00 +0200
-
-pika-gnome-layouts (2.0-99pika9) kinetic; urgency=low
-
-  * Fix theming maybe
-
- -- Ward Nakchbandi <hotrod.master@hotmail.com>  Sat, 01 Oct 2022 14:50:00 +0200
-
-pika-gnome-layouts (2.0-99pika6) kinetic; urgency=low
-
-  * Redo Themeing system
-
- -- Ward Nakchbandi <hotrod.master@hotmail.com>  Sat, 01 Oct 2022 14:50:00 +0200
-
-pika-gnome-layouts (2.0-99pika1) kinetic; urgency=low
-
-  * Switch to new themes
-
- -- Ward Nakchbandi <hotrod.master@hotmail.com>  Sat, 01 Oct 2022 14:50:00 +0200
-
-pika-gnome-layouts (1.0-99pika3) kinetic; urgency=low
-
-  * Add tooltips
-
- -- Ward Nakchbandi <hotrod.master@hotmail.com>  Sat, 01 Oct 2022 14:50:00 +0200
-
-pika-gnome-layouts (1.0-99pika2) kinetic; urgency=low
+pika-gnome-first-setup (1.0-99pika1-lunar) lunar; urgency=low
 
   * Initial Creation
 

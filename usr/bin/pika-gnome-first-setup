@@ -1,0 +1,5 @@
+#! /bin/bash
+if [[ ! -f $HOME/.config/pika-first-setup-done ]]
+then
+	python3 /usr/lib/pika/gnome-first-setup/main.py && mkdir -p $HOME/.config && touch $HOME/.config/pika-first-setup-done
+fi

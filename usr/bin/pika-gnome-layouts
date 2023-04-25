@@ -1,7 +1,0 @@
-#! /bin/bash
-if echo $XDG_SESSION_DESKTOP | grep -i ubuntu
-then
-	python3 /usr/lib/pika/gnome-layouts/main.py
-else
-	zenity --error --text="current session isn't gnome"
-fi
