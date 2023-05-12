@@ -8,4 +8,5 @@ Build-Depends: debhelper-compat (= 13)
 Package: pika-gnome-first-setup
 Architecture: all
 Depends: pika-gnome-layouts
+Provides: pika-first-setup
 Description: PikaOS First Setup for Gnome Desktop

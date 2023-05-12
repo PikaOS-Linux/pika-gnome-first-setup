@@ -113,7 +113,7 @@ class Application:
         subprocess.Popen(["/usr/lib/pika/welcome/nvidia.sh"])
     ### Distro Sync ###
     def on_update_system_button_pressed(self, widget):
-        subprocess.Popen(["mintupdate"])
+        subprocess.Popen(["update-manager"])
     def on_network_connect_button_pressed(self, widget):
         subprocess.Popen(["/usr/lib/pika/gnome-first-setup/network-settings.sh"])
     def on_pika_hub_button_pressed(self, widget):
